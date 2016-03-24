@@ -1,0 +1,46 @@
+ <html>
+    <head>
+    <title>CNPJ Webservice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Adicionando Javascript -->
+    <script type="text/javascript" >
+
+
+    function meu_callback(conteudo) {
+
+    	//Atualiza os campos com os valores.
+    	document.getElementById('txtRazao').value=(conteudo.nome);
+    }
+
+    function pesquisacep(valor) {
+
+    	//Nova variavel "cep" somente com dígitos.
+    	var cnpj = valor;
+
+    	//Cria um elemento javascript.
+    	var script = document.createElement('script');
+
+    	//Sincroniza com o callback.
+    	script.src = '//receitaws.com.br/v1/cnpj/'+ cnpj + '/?callback=meu_callback';
+
+    	//Insere script no documento e carrega o conteúdo.
+       document.body.appendChild(script);
+
+    };
+
+    </script>
+    </head>
+
+    <body>
+    <!-- Inicio do formulario -->
+      <form method="get" action=".">
+        <label>Cep:
+        <input name="txtCNPJ" type="text" id="txtCNPJ" value="" 
+               onblur="pesquisacep(this.value);" /></label><br />
+        <label>Nome:
+        <input name="txtRazao" type="text" id="txtRazao" size="60" /></label><br />
+      </form>
+    </body>
+
+    </html>
